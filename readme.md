@@ -18,6 +18,7 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 3. Download [Github Desktop](https://desktop.github.com/) install it and sign in with your github account.
 
 4. Fork the project (top right corner of this page)
+
 ![fork button image](/doc_images/fork.png)
 
 5. Download the project by clicking "Open with Github Desktop" (at the top of the page, green button, make sure you fork the project, the project should be under your username, not "samueltan3972")
@@ -30,6 +31,7 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 npm run install
 node server.js
 </code>
+
 9. View the project at <code> localhost:8000 </code>
 
 
