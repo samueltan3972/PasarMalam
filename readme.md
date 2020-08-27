@@ -32,6 +32,19 @@ npm run install
 node server.js
 </code>
 
+
 9. View the project at <code> localhost:8000 </code>
 
 
+## Project Structure
+1. This project is based on [Bootstrap Ecommerce](http://bootstrap-ecommerce.com/developer.html)
+2. The project is consist of 
+
+|------ index.html
+|------ home.html (eventually will be index.html, jz a temporary solution)
+|------ login.html
+|------ checkout.html
+|------ product.html
+|------ view_order.html
+
+3. The "example-sliders.html" and "html-components.html" consists of sample code to make out different component
