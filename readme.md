@@ -27,13 +27,10 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 6. After it open in Github Desktop, clone(download) the project to your desktop/laptop (it must go thru Github Desktop, not download through zip file)
 7. Open the project folder in command prompt (cmd) / terminal 
 8. Run the following command to install project dependency and start the server
-<code>
-npm run install   
-</code>
-  
-<code>
-node server.js
-</code>  
+
+> npm run install   
+> node server.js
+
 
 9. View the project at <code> localhost:8000 </code>
 
