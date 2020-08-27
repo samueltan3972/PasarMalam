@@ -30,9 +30,11 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 <code>
 npm run install   
 </code>
+  
 <code>
 node server.js
 </code>  
+
 9. View the project at <code> localhost:8000 </code>
 
 
