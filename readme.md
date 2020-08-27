@@ -29,10 +29,10 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 8. Run the following command to install project dependency and start the server
 <code>
 npm run install   
-node server.js
 </code>
-
-
+<code>
+node server.js
+</code>  
 9. View the project at <code> localhost:8000 </code>
 
 
