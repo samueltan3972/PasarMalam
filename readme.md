@@ -28,7 +28,7 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 7. Open the project folder in command prompt (cmd) / terminal 
 8. Run the following command to install project dependency and start the server
 
-> npm run install   
+> npm install   
 > node server.js
 
 
