@@ -25,7 +25,10 @@
       
       // jquery ready start
       $(document).ready(function() {
-      	// jQuery code
+        var history = sessionStorage.getItem("order_history")
+
+        if(!cart)
+          window.location.replace("/home.html")
       
       }); 
       // jquery end
