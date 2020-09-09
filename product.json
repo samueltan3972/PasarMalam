@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Double Beef Burger",
+        "Price": 14.9,
+        "desc": "Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        "meat": "Beef",
+        "img": "images/items/double-beef.jpg"
+    },
+    {
+        "Name": "Bacon Cheese Burger",
+        "Price": 10.5,
+        "desc": "Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        "meat": "Pork",
+        "img": "images/items/bacon-cheese.jpg"
+    },
+    {
+        "Name": "Classic Chicken Burger",
+        "Price": 8.9,
+        "desc": "Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        "meat": "Chicken",
+        "img": "images/items/classic-chicken-burger.jpg"
+    },
+    {
+        "Name": "Cheese Burger",
+        "Price": 11.9,
+        "desc": "Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        "meat": "Beef",
+        "img": "images/items/cheese-burger.jpg"
+    },
+    {
+        "Name": "French Fries",
+        "Price": 3,
+        "desc": "Here goes description consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+        "meat": "Vegan",
+        "img": "images/items/french-fries.jpg"
+    }
+]
