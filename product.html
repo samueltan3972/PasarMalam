@@ -56,9 +56,22 @@
 				$("#productMeat").text(selectedProduct.meat)
 			}
 
+			updateCart()
+
 			// load input plugin
 			$("input[type='number']").inputSpinner();
 		});
+
+		function updateCart(){
+			// Update cart number
+			var cart = JSON.parse(sessionStorage.getItem("cart"))
+			var cart_num = 0
+
+			if(cart)
+				cart_num = cart.length
+
+			$("#cartCounter").text(cart_num)
+		}
 
 		function addToCart(noDisplay = false) {
 			var cart = sessionStorage.getItem("cart")
@@ -85,6 +98,8 @@
 
 			if (!noDisplay)
 				$('#exampleModal').modal()
+
+			updateCart()
 
 		}
 
@@ -128,10 +143,25 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-3 col-sm-4">
-						<div class="brand-wrap">
+						<a href="home.html" class="brand-wrap">
 							<img class="logo" src="images/icons/burger-icon2.jpg">
 							<h2 class="logo-text">IT Burger</h2>
-						</div> <!-- brand-wrap.// -->
+						</a> <!-- brand-wrap.// -->
+					</div>
+
+					<div class="col-lg-9 col-sm-8">
+						<div class="widgets-wrap float-right">
+							<a href="/checkout.html" class="widget-header mr-3">
+								<div class="icontext">
+									<div class="icon-wrap"><i class="icon-sm round border fa fa-shopping-cart"></i>
+									</div>
+									<div class="text-wrap">
+										<span id="cartCounter" class="small badge badge-danger"></span>
+										<div>Cart</div>
+									</div>
+								</div>
+							</a>
+						</div>
 					</div>
 				</div> <!-- row.// -->
 			</div> <!-- container.// -->
@@ -190,7 +220,8 @@
 											<dl class="dlist-inline">
 												<dt>Quantity: </dt>
 												<dd>
-													<input id="quantity" type="number" value="1" min="1" max="100" step="1"/>
+													<input id="quantity" type="number" value="1" min="1" max="100"
+														step="1" />
 												</dd>
 											</dl> <!-- item-property .// -->
 										</div> <!-- col.// -->
@@ -258,7 +289,7 @@
 	<!-- ========================= MODAL  ========================= -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-success">
 					<h5 class="modal-title text-white" id="exampleModalLabel">Success</h5>
