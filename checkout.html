@@ -1,64 +1,66 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="max-age=604800" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
-<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+	<meta charset="utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="max-age=604800" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Ensures optimal rendering on mobile devices. -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
 
-<title>CheckOut</title>
+	<title>CheckOut</title>
 
-<link href="images/icons/burger-icon2.jpg" rel="shortcut icon" type="image/x-icon">
+	<link href="images/icons/burger-icon2.jpg" rel="shortcut icon" type="image/x-icon">
 
-<!-- jQuery -->
-<script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
+	<!-- jQuery -->
+	<script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
 
-<!-- Bootstrap4 files-->
-<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<link href="css/bootstrap-custom.css" rel="stylesheet" type="text/css"/>
+	<!-- Bootstrap4 files-->
+	<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+	<link href="css/bootstrap-custom.css" rel="stylesheet" type="text/css" />
 
-<!-- Font awesome 5 -->
-<link href="fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+	<!-- Font awesome 5 -->
+	<link href="fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
 
-<!-- custom style -->
-<link href="css/uikit.css" rel="stylesheet" type="text/css"/>
-<link href="css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+	<!-- custom style -->
+	<link href="css/uikit.css" rel="stylesheet" type="text/css" />
+	<link href="css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
-<!-- custom javascript -->
-<script src="js/script.js" type="text/javascript"></script>
-<script src="js/bootstrap-input-spinner.js"></script>
+	<!-- custom javascript -->
+	<script src="js/script.js" type="text/javascript"></script>
+	<script src="js/bootstrap-input-spinner.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-var cart
+		var cart, totalPrice
 
-// jquery ready start
-$(document).ready(function() {
-	cart = JSON.parse(sessionStorage.getItem("cart"))
-	var cart_num = 0
-        
-	if(!cart || cart.length == 0){
-		$('#exampleModal').modal()
-	}
-	else{
-		renderCart()
-		cart_num = cart.length
+		// jquery ready start
+		$(document).ready(function () {
+			cart = JSON.parse(sessionStorage.getItem("cart"))
+			var cart_num = 0
 
-		// load input plugin
-		$("input[type='number']").inputSpinner();
-	}
-	
-	$("#cartCounter").text(cart_num)
-}); 
+			if (!cart || cart.length == 0) {
+				$('#exampleModal').modal()
+			}
+			else {
+				renderCart()
+				cart_num = cart.length
 
-function renderCart(){
-	$("#productTable").empty()
+				// load input plugin
+				$("input[type='number']").inputSpinner();
+			}
 
-	cart.forEach((val, index) => {
-		$("#productTable").append(`<tr>
+			$("#cartCounter").text(cart_num)
+		});
+
+		function renderCart() {
+			$("#productTable").empty()
+
+			cart.forEach((val, index) => {
+				$("#productTable").append(`<tr>
 			<td>
 		<figure class="media">
 			<div class="img-wrap"><img src="` + val.img + `" class="img-thumbnail img-sm"></div>
@@ -83,233 +85,249 @@ function renderCart(){
 			<td class="text-right"> 
 				<a href="" onclick="removeProduct(` + index + `)" class="btn btn-outline-danger"> × Remove</a>
 			</td>
-		</tr>`)	
-	});
+		</tr>`)
+			});
 
-	updateTotalPrice()
-}
+			updateTotalPrice()
+		}
 
-function updateCartQuantity(i){
-	var quantity = parseInt($("#quantity" + i).val())
+		function updateCartQuantity(i) {
+			var quantity = parseInt($("#quantity" + i).val())
 
-	cart[i].quantity = quantity
-	sessionStorage.setItem("cart", JSON.stringify(cart))
+			cart[i].quantity = quantity
+			sessionStorage.setItem("cart", JSON.stringify(cart))
 
-	// Update Price
-	$("#price" + i).text("RM " + (cart[i].Price * cart[i].quantity).toFixed(2))
-	updateTotalPrice()
-}
+			// Update Price
+			$("#price" + i).text("RM " + (cart[i].Price * cart[i].quantity).toFixed(2))
+			updateTotalPrice()
+		}
 
-function updateTotalPrice(){
-	var totalPrice = 0
+		function updateTotalPrice() {
+			totalPrice = 0
 
-	for(var i = 0; i < cart.length; i++){
-		totalPrice += cart[i].Price * cart[i].quantity
-	}
-	
-	$("#totalPrice").text("RM " + totalPrice.toFixed(2))
-}
+			for (var i = 0; i < cart.length; i++) {
+				totalPrice += cart[i].Price * cart[i].quantity
+			}
 
-function removeProduct(i){
-	cart.splice(i, 1)
-	
-	sessionStorage.setItem("cart", JSON.stringify(cart))
-	renderCart()
-}
-</script>
+			$("#totalPrice").text("RM " + totalPrice.toFixed(2))
+		}
+
+		function removeProduct(i) {
+			cart.splice(i, 1)
+
+			sessionStorage.setItem("cart", JSON.stringify(cart))
+			renderCart()
+		}
+	</script>
 
 </head>
+
 <body>
-<header class="section-header">
-<nav class="navbar navbar-top navbar-expand-lg navbar-dark bg-secondary">
-<div class="container">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-<li class="nav-item active">
-<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-</li>
-<li class="nav-item dropdown">
-	<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">  My account  </a>
-    <ul class="dropdown-menu">	
-		<li> <a class="dropdown-item" href="login.html"> User Login </a></li>
-		<li> <a class="dropdown-item" href="sign_up.html"> User register </a></li>
-		<li> <a class="dropdown-item" href="view_order.html"> My Orders </a></li>
-		<li> <a class="dropdown-item" href="checkout.html"> My Wishlist </a></li>
-    </ul>
-</li>
-    </ul>
-  </div>
-</div> <!-- container //  -->
-</nav>
-<section class="header-main">
-	<div class="container">
-<div class="row align-items-center">
-	<div class="col-lg-3 col-sm-4">
-	<a href="/home.html" class="brand-wrap">
-		<img class="logo" src="images/icons/burger-icon2.jpg">
-		<h2 class="logo-text">IT Burger</h2>
-		
-	</a> <!-- brand-wrap.// -->
-	</div>
+	<header class="section-header">
+		<nav class="navbar navbar-top navbar-expand-lg navbar-dark bg-secondary">
+			<div class="container">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> My account </a>
+							<ul class="dropdown-menu">
+								<li> <a class="dropdown-item" href="login.html"> User Login </a></li>
+								<li> <a class="dropdown-item" href="sign_up.html"> User register </a></li>
+								<li> <a class="dropdown-item" href="view_order.html"> My Orders </a></li>
+								<li> <a class="dropdown-item" href="checkout.html"> My Wishlist </a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div> <!-- container //  -->
+		</nav>
+		<section class="header-main">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-3 col-sm-4">
+						<a href="/home.html" class="brand-wrap">
+							<img class="logo" src="images/icons/burger-icon2.jpg">
+							<h2 class="logo-text">IT Burger</h2>
 
-	<div class="col-lg-9 col-sm-8">
-		<div class="widgets-wrap float-right">
-		  <a href="/checkout.html" class="widget-header mr-3">
-			<div class="icontext">
-			  <div class="icon-wrap"><i class="icon-sm round border fa fa-shopping-cart"></i></div>
-			  <div class="text-wrap">
-				<span id="cartCounter" class="small badge badge-danger"></span>
-				<div>Cart</div>
-			  </div>
-			</div>
-		  </a>
-		</div>
-	  </div>
-</div> <!-- row.// -->
-	</div> <!-- container.// -->
-</section> <!-- header-main .// -->
-</header> <!-- section-header.// -->
+						</a> <!-- brand-wrap.// -->
+					</div>
 
-
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content bg padding-y border-top">
-<div class="container">
-
-<div class="row">
-	<main class="col-sm-12 col-md-9">
-
-<div class="card">
-<table class="table table-hover shopping-cart-wrap">
-<thead class="text-muted">
-<tr>
-  <th scope="col">Product</th>
-  <th scope="col" width="200">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" class="text-right" width="200">Action</th>
-</tr>
-</thead>
-<tbody id="productTable">
-
-</tbody>
-</table>
-</div> <!-- card.// -->
-
-	</main> <!-- col.// -->
-	<aside class="col-sm-3">
-<dl class="dlist-align h4">
-  <dt>Total:</dt>
-  <dd class="text-right"><strong id="totalPrice"></strong></dd>
-</dl>
-
-<hr>
-<script
-src="https://www.paypal.com/sdk/js?client-id=AR7G9dkEWf5capUpnNV37tSJjwDg89TLiv3RHu73uW3BWE51ac8OYgVrzPhGStFJPulyF01SAiJ0RYe4"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
-</script>
+					<div class="col-lg-9 col-sm-8">
+						<div class="widgets-wrap float-right">
+							<a href="/checkout.html" class="widget-header mr-3">
+								<div class="icontext">
+									<div class="icon-wrap"><i class="icon-sm round border fa fa-shopping-cart"></i>
+									</div>
+									<div class="text-wrap">
+										<span id="cartCounter" class="small badge badge-danger"></span>
+										<div>Cart</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div> <!-- row.// -->
+			</div> <!-- container.// -->
+		</section> <!-- header-main .// -->
+	</header> <!-- section-header.// -->
 
 
-<div id="paypal-button-container"></div>
+	<!-- ========================= SECTION CONTENT ========================= -->
+	<section class="section-content bg padding-y border-top">
+		<div class="container">
 
-<script>
-	paypal.Buttons({
-	  createOrder: function(data, actions) {
-		// This function sets up the details of the transaction, including the amount and line item details.
-		return actions.order.create({
-		  purchase_units: [{
-			amount: {
-			  value: '0.01'
-			}
-		  }]
-		});
-	  },
-	  onApprove: function(data, actions) {
-		// This function captures the funds from the transaction.
-		return actions.order.capture().then(function(details) {
-		  // This function shows a transaction success message to your buyer.
-		  alert('Transaction completed by ' + details.payer.name.given_name);
-		});
-	  }
-	}).render('#paypal-button-container');
+			<div class="row">
+				<main class="col-sm-12 col-md-9">
+
+					<div class="card">
+						<table class="table table-hover shopping-cart-wrap">
+							<thead class="text-muted">
+								<tr>
+									<th scope="col">Product</th>
+									<th scope="col" width="200">Quantity</th>
+									<th scope="col" width="120">Price</th>
+									<th scope="col" class="text-right" width="200">Action</th>
+								</tr>
+							</thead>
+							<tbody id="productTable">
+
+							</tbody>
+						</table>
+					</div> <!-- card.// -->
+
+				</main> <!-- col.// -->
+				<aside class="col-sm-3">
+					<dl class="dlist-align h4">
+						<dt>Total:</dt>
+						<dd class="text-right"><strong id="totalPrice"></strong></dd>
+					</dl>
+
+					<hr>
+					<script
+						src="https://www.paypal.com/sdk/js?client-id=AR7G9dkEWf5capUpnNV37tSJjwDg89TLiv3RHu73uW3BWE51ac8OYgVrzPhGStFJPulyF01SAiJ0RYe4"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+						</script>
+
+
+					<div id="paypal-button-container"></div>
+
+					<script>
+
+						paypal.Buttons({
+							createOrder: function (data, actions) {
+								// This function sets up the details of the transaction, including the amount and line item details.
+
+								return actions.order.create({
+									purchase_units: [{
+										amount: {
+											value: (totalPrice / 4).toFixed(2),
+											currency: "MYR"
+										}
+									}]
+								});
+							},
+							onApprove: function (data, actions) {
+								// This function captures the funds from the transaction.
+								return actions.order.capture().then(function (details) {
+									// This function shows a transaction success message to your buyer.
+									alert('Transaction completed by ' + details.payer.name.given_name);
+								});
+							}
+						}).render('#paypal-button-container');
 	//This function displays Smart Payment Buttons on your web page.
-  </script>
-<p><strong>Note: Based on the weather table below, if it is currently raining heavily, the delivery service will be delay a bit.</strong></p>
+					</script>
+					<p><strong>Note: Based on the weather table below, if it is currently raining heavily, the delivery
+							service will be delay a bit.</strong></p>
 
-<iframe src="https://www.meteoblue.com/en/weather/widget/daily/kampar_malaysia_1735274?geoloc=fixed&days=7&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windgust=0&winddirection=0&uv=0&uv=1&humidity=0&humidity=1&precipitation=0&precipitationprobability=0&precipitationprobability=1&spot=0&pressure=0&layout=light"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 378px; height: 301px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/en/weather/week/kampar_malaysia_1735274?utm_source=weather_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" target="_blank"></a></div>
+					<iframe
+						src="https://www.meteoblue.com/en/weather/widget/daily/kampar_malaysia_1735274?geoloc=fixed&days=7&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=0&pictoicon=1&maxtemperature=0&maxtemperature=1&mintemperature=0&mintemperature=1&windspeed=0&windgust=0&winddirection=0&uv=0&uv=1&humidity=0&humidity=1&precipitation=0&precipitationprobability=0&precipitationprobability=1&spot=0&pressure=0&layout=light"
+						frameborder="0" scrolling="NO" allowtransparency="true"
+						sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+						style="width: 378px; height: 301px"></iframe>
+					<div>
+						<!-- DO NOT REMOVE THIS LINK --><a
+							href="https://www.meteoblue.com/en/weather/week/kampar_malaysia_1735274?utm_source=weather_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget"
+							target="_blank"></a></div>
 
-	</aside> <!-- col.// -->
-</div>
+				</aside> <!-- col.// -->
+			</div>
 
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
+		</div> <!-- container .//  -->
+	</section>
+	<!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name bg-white padding-y">
-<div class="container">
+	<!-- ========================= SECTION  ========================= -->
+	<section class="section-name bg-white padding-y">
+		<div class="container">
 
 
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
+		</div><!-- container // -->
+	</section>
+	<!-- ========================= SECTION  END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name bg padding-y">
-<div class="container">
+	<!-- ========================= SECTION  ========================= -->
+	<section class="section-name bg padding-y">
+		<div class="container">
 
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
+		</div><!-- container // -->
+	</section>
+	<!-- ========================= SECTION  END// ========================= -->
 
-<!-- ========================= MODAL  ========================= -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-	<div class="modal-content">
-		<div class="modal-header bg-info">
-			<h5 class="modal-title text-white" id="exampleModalLabel">Empty</h5>
-			<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			Your cart is Empty!
-		</div>
-		<div class="modal-footer">
-			<a href="home.html"><button type="button" class="btn btn-info">Back to Home</button></a>
+	<!-- ========================= MODAL  ========================= -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-info">
+					<h5 class="modal-title text-white" id="exampleModalLabel">Empty</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Your cart is Empty!
+				</div>
+				<div class="modal-footer">
+					<a href="home.html"><button type="button" class="btn btn-info">Back to Home</button></a>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
-<!-- ========================= MODAL .END// ========================= -->
+	<!-- ========================= MODAL .END// ========================= -->
 
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg-secondary">
-	<div class="container">
-		<section class="footer-bottom row border-top-white">
-			<div class="col-sm-6"> 
-				<p class="text-white-50"> IT Burger</p>
-			</div>
-			<div class="col-sm-6 text-right">
-				<p class="text-sm-right text-white-50">
-	Copyright &copy 2018 <br>
-<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
-				</p>
-			</div>
-		</section> <!-- //footer-top -->
-	</div><!-- //container -->
-</footer>
-<!-- ========================= FOOTER END // ========================= -->
+	<!-- ========================= FOOTER ========================= -->
+	<footer class="section-footer bg-secondary">
+		<div class="container">
+			<section class="footer-bottom row border-top-white">
+				<div class="col-sm-6">
+					<p class="text-white-50"> IT Burger</p>
+				</div>
+				<div class="col-sm-6 text-right">
+					<p class="text-sm-right text-white-50">
+						Copyright &copy 2018 <br>
+						<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
+					</p>
+				</div>
+			</section> <!-- //footer-top -->
+		</div><!-- //container -->
+	</footer>
+	<!-- ========================= FOOTER END // ========================= -->
 
-<script>
-	document.getElementById("pay").onclick = display;
+	<script>
+		document.getElementById("pay").onclick = display;
 
-	function display() {
-		alert("Payment Success!");
-	}
-</script>  
+		function display() {
+			alert("Payment Success!");
+		}
+	</script>
 
 
 </body>
+
 </html>
