@@ -42,9 +42,9 @@
 			login_user = sessionStorage.getItem("login_user")
 			var cart_num = 0
 
-			if(!login_user)
+			if (!login_user)
 				window.location.replace("/login.html")
-			
+
 			if (!cart || cart.length == 0) {
 				$('#exampleModal').modal()
 			}
@@ -135,7 +135,7 @@
 			localStorage.setItem("members_informations", JSON.stringify(members_informations))
 
 			renderCart()
-			
+
 		}
 	</script>
 
@@ -259,11 +259,11 @@
 
 									// Date Time
 									var today = new Date();
-									var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+									var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 									var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-									var dateTime = date+' '+time;
+									var dateTime = date + ' ' + time;
 
-									if(!order_history) order_history = []
+									if (!order_history) order_history = []
 
 									// generate order history
 									od.item = cart
@@ -275,7 +275,7 @@
 									// update order history into session storage
 									sessionStorage.setItem("cart", "[]")
 									sessionStorage.setItem("order_history", JSON.stringify(order_history))
-									
+
 									// update order history into members information, local storage
 									var members_informations = JSON.parse(localStorage.getItem("members_informations"))
 
@@ -367,6 +367,21 @@
 		</div><!-- //container -->
 	</footer>
 	<!-- ========================= FOOTER END // ========================= -->
+
+	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/5f59c9eaf0e7167d000f00d4/default';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	</script>
+	<!--End of Tawk.to Script-->
+
 </body>
 
 </html>
