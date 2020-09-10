@@ -1,4 +1,10 @@
 // some scripts
+function logOut(){
+    sessionStorage.removeItem("login_user")
+    sessionStorage.removeItem("cart")
+    sessionStorage.removeItem("order_history")
+    window.location.replace("/login.html")
+}
 
 // jquery ready start
 $(document).ready(function() {

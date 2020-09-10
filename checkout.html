@@ -6,7 +6,6 @@
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="cache-control" content="max-age=604800" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Ensures optimal rendering on mobile devices. -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
@@ -35,13 +34,17 @@
 
 	<script type="text/javascript">
 
-		var cart, totalPrice
+		var cart, totalPrice, login_user
 
 		// jquery ready start
 		$(document).ready(function () {
 			cart = JSON.parse(sessionStorage.getItem("cart"))
+			login_user = sessionStorage.getItem("login_user")
 			var cart_num = 0
 
+			if(!login_user)
+				window.location.replace("/login.html")
+			
 			if (!cart || cart.length == 0) {
 				$('#exampleModal').modal()
 			}
@@ -94,8 +97,15 @@
 		function updateCartQuantity(i) {
 			var quantity = parseInt($("#quantity" + i).val())
 
+			// update cart into session
 			cart[i].quantity = quantity
 			sessionStorage.setItem("cart", JSON.stringify(cart))
+
+			// update cart into members information, local storage
+			var members_informations = JSON.parse(localStorage.getItem("members_informations"))
+
+			members_informations[login_user].cart = JSON.stringify(cart)
+			localStorage.setItem("members_informations", JSON.stringify(members_informations))
 
 			// Update Price
 			$("#price" + i).text("RM " + (cart[i].Price * cart[i].quantity).toFixed(2))
@@ -115,8 +125,17 @@
 		function removeProduct(i) {
 			cart.splice(i, 1)
 
+			// update cart into session storage
 			sessionStorage.setItem("cart", JSON.stringify(cart))
+
+			// update cart into members information, local storage
+			var members_informations = JSON.parse(localStorage.getItem("members_informations"))
+
+			members_informations[login_user].cart = JSON.stringify(cart)
+			localStorage.setItem("members_informations", JSON.stringify(members_informations))
+
 			renderCart()
+			
 		}
 	</script>
 
@@ -135,27 +154,26 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown" id="need-login">
 							<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> My account </a>
 							<ul class="dropdown-menu">
-								<li> <a class="dropdown-item" href="login.html"> User Login </a></li>
-								<li> <a class="dropdown-item" href="sign_up.html"> User register </a></li>
 								<li> <a class="dropdown-item" href="view_order.html"> My Orders </a></li>
-								<li> <a class="dropdown-item" href="checkout.html"> My Wishlist </a></li>
+								<li> <a class="dropdown-item" href="checkout.html"> My Shopping Cart </a></li>
+								<li> <a class="dropdown-item" href="#" onclick="logOut()"> Log out </a></li>
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</div> <!-- container //  -->
 		</nav>
-		<section class="header-main">
+
+		<section class="header-main shadow-sm">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-3 col-sm-4">
-						<a href="/home.html" class="brand-wrap">
+						<a href="home.html" class="brand-wrap">
 							<img class="logo" src="images/icons/burger-icon2.jpg">
 							<h2 class="logo-text">IT Burger</h2>
-
 						</a> <!-- brand-wrap.// -->
 					</div>
 
@@ -173,8 +191,7 @@
 							</a>
 						</div>
 					</div>
-				</div> <!-- row.// -->
-			</div> <!-- container.// -->
+				</div> <!-- container.// -->
 		</section> <!-- header-main .// -->
 	</header> <!-- section-header.// -->
 
@@ -235,8 +252,41 @@
 							onApprove: function (data, actions) {
 								// This function captures the funds from the transaction.
 								return actions.order.capture().then(function (details) {
-									// This function shows a transaction success message to your buyer.
-									alert('Transaction completed by ' + details.payer.name.given_name);
+
+									var order_history = JSON.parse(sessionStorage.getItem("order_history"))
+									var cart = JSON.parse(sessionStorage.getItem("cart"))
+									var od = {}
+
+									// Date Time
+									var today = new Date();
+									var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+									var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+									var dateTime = date+' '+time;
+
+									if(!order_history) order_history = []
+
+									// generate order history
+									od.item = cart
+									od.checkoutDate = dateTime
+									od.totalPrice = totalPrice.toFixed(2)
+
+									order_history.push(od)
+
+									// update order history into session storage
+									sessionStorage.setItem("cart", "[]")
+									sessionStorage.setItem("order_history", JSON.stringify(order_history))
+									
+									// update order history into members information, local storage
+									var members_informations = JSON.parse(localStorage.getItem("members_informations"))
+
+									members_informations[login_user].order_history = JSON.stringify(order_history)
+									members_informations[login_user].cart = "[]"
+									localStorage.setItem("members_informations", JSON.stringify(members_informations))
+
+									// This function shows a transaction success message to your buyer. TODO
+									alert('Transaction completed by ' + details.payer.name.given_name)
+
+									window.location.replace("/view_order.html")
 								});
 							}
 						}).render('#paypal-button-container');
@@ -311,23 +361,12 @@
 				<div class="col-sm-6 text-right">
 					<p class="text-sm-right text-white-50">
 						Copyright &copy 2018 <br>
-						<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
 					</p>
 				</div>
 			</section> <!-- //footer-top -->
 		</div><!-- //container -->
 	</footer>
 	<!-- ========================= FOOTER END // ========================= -->
-
-	<script>
-		document.getElementById("pay").onclick = display;
-
-		function display() {
-			alert("Payment Success!");
-		}
-	</script>
-
-
 </body>
 
 </html>
