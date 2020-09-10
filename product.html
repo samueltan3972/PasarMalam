@@ -60,7 +60,7 @@
 			login_user = sessionStorage.getItem("login_user")
 
 			// if no login, else is login
-			if(!login_user){
+			if (!login_user) {
 				$(".need-login").addClass("d-none")
 			}
 			else
@@ -72,12 +72,12 @@
 			$("input[type='number']").inputSpinner();
 		});
 
-		function updateCart(){
+		function updateCart() {
 			// Update cart number
 			var cart = JSON.parse(sessionStorage.getItem("cart"))
 			var cart_num = 0
 
-			if(cart)
+			if (cart)
 				cart_num = cart.length
 
 			$("#cartCounter").text(cart_num)
@@ -268,23 +268,23 @@
 	</section>
 	<!-- ========================= SECTION CONTENT .END// ========================= -->
 
-		<!-- ========================= SECTION  ========================= -->
-		<section class="section-name bg-white padding-y">
-			<div class="container">
-	
-	
-			</div><!-- container // -->
-		</section>
-		<!-- ========================= SECTION  END// ========================= -->
-		
-		<!-- ========================= SECTION  ========================= -->
-		<section class="section-name bg-white padding-y">
-			<div class="container">
+	<!-- ========================= SECTION  ========================= -->
+	<section class="section-name bg-white padding-y">
+		<div class="container">
 
 
-			</div><!-- container // -->
-		</section>
-		<!-- ========================= SECTION  END// ========================= -->
+		</div><!-- container // -->
+	</section>
+	<!-- ========================= SECTION  END// ========================= -->
+
+	<!-- ========================= SECTION  ========================= -->
+	<section class="section-name bg-white padding-y">
+		<div class="container">
+
+
+		</div><!-- container // -->
+	</section>
+	<!-- ========================= SECTION  END// ========================= -->
 
 	<!-- ========================= MODAL  ========================= -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -325,17 +325,17 @@
 		</div><!-- //container -->
 	</footer>
 	<!-- ========================= FOOTER END // ========================= -->
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src='https://embed.tawk.to/5f59cd3cf0e7167d000f0179/default';
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-	})();
+	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/5f59cd3cf0e7167d000f0179/default';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
 	</script>
 	<!--End of Tawk.to Script-->
 </body>

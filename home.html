@@ -43,20 +43,20 @@
 			$.getJSON("product.json", function (json) {
 				product = json
 			});
-			
+
 			// Update navigation bar based on whether user logged in
 			var login_user = sessionStorage.getItem("login_user")
 
-			if(!login_user)
+			if (!login_user)
 				$(".need-login").addClass("d-none")
 			else
 				$(".no-login").addClass("d-none")
-				
+
 			// Update cart number
 			var cart = JSON.parse(sessionStorage.getItem("cart"))
 			var cart_num = 0
 
-			if(cart)
+			if (cart)
 				cart_num = cart.length
 
 			$("#cartCounter").text(cart_num)
@@ -108,9 +108,10 @@
 							<a class="nav-link" href="about_us.html">About Us <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="contact_us.html">Contact Us<span class="sr-only">(current)</span></a>
+							<a class="nav-link" href="contact_us.html">Contact Us<span
+									class="sr-only">(current)</span></a>
 						</li>
-						
+
 					</ul>
 				</div>
 			</div> <!-- container //  -->
@@ -282,17 +283,18 @@
 	</footer>
 	<!-- ========================= FOOTER END // ========================= -->
 	<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src='https://embed.tawk.to/5f59c9eaf0e7167d000f00d4/default';
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-	})();
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function () {
+			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/5f59c9eaf0e7167d000f00d4/default';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
 	</script>
 	<!--End of Tawk.to Script-->
 </body>
+
 </html>
