@@ -13,6 +13,8 @@
 
 <link href="images/icons/burger-icon2.jpg" rel="shortcut icon" type="image/x-icon">
 
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animate.css">
 <!-- jQuery -->
 <script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
 
@@ -283,6 +285,33 @@ aria-hidden="true">
 </div>
 </div>
 <!-- ========================= MODAL .END// ========================= -->
+
+
+<div class="video">
+    <iframe width="250" height="125" src="https://www.youtube.com/embed/zoQ8C0r6Djw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<a id="back2Top" title="Back to top" href="#">&#10148;</a>
+<script>
+	/*Scroll to top when arrow up clicked BEGIN*/
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#back2Top').fadeIn();
+    } else {
+        $('#back2Top').fadeOut();
+    }
+});
+$(document).ready(function() {
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+
+});
+ /*Scroll to top when arrow up clicked END*/
+</script>
 
 <!-- ========================= FOOTER ========================= -->
 <footer class="section-footer bg-secondary">
