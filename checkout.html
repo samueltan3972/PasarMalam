@@ -356,36 +356,75 @@
 			</div>
 		</div>
 	</div>
-	<!-- ========================= MODAL .END// ========================= -->
 
-	<!-- ========================= FOOTER ========================= -->
-	<footer class="section-footer bg-secondary">
-		<div class="container">
-			<section class="footer-bottom row border-top-white">
-				<div class="col-sm-6">
-					<p class="text-white-50"> IT Burger</p>
-				</div>
-				<div class="col-sm-6 text-right">
-					<p class="text-sm-right text-white-50">
-						Copyright &copy 2018 <br>
-					</p>
-				</div>
-			</section> <!-- //footer-top -->
-		</div><!-- //container -->
-	</footer>
-	<!-- ========================= FOOTER END // ========================= -->
+</div>
+</div>
+<!-- ========================= MODAL .END// ========================= -->
 
-	<!--Start of Tawk.to Script-->
-	<script type="text/javascript">
-		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-		(function () {
-			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-			s1.async = true;
-			s1.src = 'https://embed.tawk.to/5f59c9eaf0e7167d000f00d4/default';
-			s1.charset = 'UTF-8';
-			s1.setAttribute('crossorigin', '*');
-			s0.parentNode.insertBefore(s1, s0);
-		})();
+
+<div class="video">
+    <iframe width="250" height="125" src="https://www.youtube.com/embed/zoQ8C0r6Djw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<a id="back2Top" title="Back to top" href="#">&#10148;</a>
+<script>
+	/*Scroll to top when arrow up clicked BEGIN*/
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#back2Top').fadeIn();
+    } else {
+        $('#back2Top').fadeOut();
+    }
+});
+$(document).ready(function() {
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+
+});
+ /*Scroll to top when arrow up clicked END*/
+</script>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer bg-secondary">
+	<div class="container">
+		<section class="footer-bottom row border-top-white">
+			<div class="col-sm-6"> 
+				<p class="text-white-50"> IT Burger</p>
+			</div>
+			<div class="col-sm-6 text-right">
+				<p class="text-sm-right text-white-50">
+	Copyright &copy 2018 <br>
+<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
+				</p>
+			</div>
+		</section> <!-- //footer-top -->
+	</div><!-- //container -->
+</footer>
+<!-- ========================= FOOTER END // ========================= -->
+
+<script>
+	document.getElementById("pay").onclick = display;
+
+	function display() {
+		alert("Payment Success!");
+	}
+</script>  
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	(function(){
+	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	s1.async=true;
+	s1.src='https://embed.tawk.to/5f59c9eaf0e7167d000f00d4/default';
+	s1.charset='UTF-8';
+	s1.setAttribute('crossorigin','*');
+	s0.parentNode.insertBefore(s1,s0);
+	})();
 	</script>
 	<!--End of Tawk.to Script-->
 
