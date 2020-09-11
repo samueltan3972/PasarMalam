@@ -2,6 +2,7 @@ const cacheName = 'cache-v1';
 const precacheResources = [
   '/',
   'index.html',
+  'home.html',
   'images/space1.jpg',
   'images/space2.jpg',
   'images/space3.jpg'
