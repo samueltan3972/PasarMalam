@@ -47,3 +47,6 @@ This project assume Git and Github knowledge has been acquired. Refer below sect
 |------ view_order.html  
   
 3. The "example-sliders.html" and "html-components.html" consists of sample code to make out different component
+
+## Project Demo
+![Demo image](pasarMalam.png)
